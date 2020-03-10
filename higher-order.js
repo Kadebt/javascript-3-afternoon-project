@@ -21,7 +21,9 @@ const mixedNumbers = [6,3,1,7,5,2,6,8,9,4,2,7,9,3,1,8,4,3];
 */
 
 //Code Here
-let evenNumbers // = mixedNumbers.filter(/* Provide Your Callback Here */)
+let evenNumbers = mixedNumbers.filter((num) => num % 2 != 1)
+
+console.log(evenNumbers)
 
 
 
@@ -44,7 +46,7 @@ const prices = [15.00, 23.00, 78.00, 34.00, 12.00, 86.00, 12.00, 79.00, 32.00];
 */
 
 //Code Here
-let postTaxPrices // = prices.map(/* Provide Your Callback Here );
+let postTaxPrices  = prices.map((e) => e * 1.07);
 
 
 
@@ -63,7 +65,7 @@ const populations = [8175133, 3792621, 2695598, 2100263];
 */
 
 //Code Here
-let totalPopulation //  = populations.reduce(/* Provide Your Callback Here */)
+let totalPopulation = populations.reduce((a, e) => a + e)
 
 
 
@@ -89,7 +91,14 @@ const monstersInYourPocket = [{"monster":"Bulbabunny","CP":156},{"monster":"Bulb
 */
 
 //Code Here
-let myStrongest // = monstersInYourPocket.filter(/* Provide Your Callback Here */)
+function newMonsters(monsters){
+  if(monsters.CP > 200){
+    return true
+  }
+}
+  
+let myStrongest = monstersInYourPocket.filter(newMonsters)
+
 
 
 
@@ -105,10 +114,19 @@ const orders = [{"price":15,"tax":0.09},{"price":42,"tax":0.07},{"price":56,"tax
 /*
   Use a higher order method to get all the order totals after adding in the sales tax (given to you as a tax rate, hint: you'll need to do some multiplication). Your answer should be an array of numbers, one total for each order.
 */
+// function orderTotals(orders){
+//   let taxes = orders.tax + 1
+//   let totalPrice = orders.price * taxes
+//   return totalPrice
+// }
+// let totalprice = orders.map(orderTotals)
+// console.log(totalprice)
 
-let orderTotals // Code here
-
-
+let orderTotals = orders.map(e => {
+  const taxRate = e.tax + 1
+  const total = e.price * taxRate
+  return total
+})
 
 ////////// PROBLEM 6 //////////
 
@@ -126,6 +144,12 @@ const purchases = [{"owner":"Barry","price":103},{"owner":"Bob","price":75},
   Use a high order method to create to get the sum of bobsTotal.
 */
 
-let bobsTotal //Code Here
+var bobsTotal = purchases.reduce((total, price) => {
+    if(price['owner'] === 'Bob'){
+       total += price['price'];
+      }
+     return total;
+      },0)
 
 
+console.log(bobsTotal)
